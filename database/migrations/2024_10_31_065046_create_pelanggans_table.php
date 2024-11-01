@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('pelanggan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('alamat');
             $table->integer('umur');
-            $table->string('');
+            $table->string('jenis_kelamin');
+            $table->string('alamat');
+            $table->integer('no_telp');
+            $table->integer('saldo');
+
+
             $table->timestamps();
         });
     }
