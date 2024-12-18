@@ -47,3 +47,7 @@ Route::get('/olahraga', function() {
 Route::get('/sekolah', function () {
     return view('sekolah.index');
 });
+
+Route::get('/order', function () {
+    return view('order.index');
+});

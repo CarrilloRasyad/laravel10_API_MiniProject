@@ -105,10 +105,27 @@ class OrderController extends Controller
         $rules = [
             'name' => 'required',
             'alamat'=> 'required',
-            'jasa_pengiriman'=> 'required',
+           'jasa_pengiriman'=> 'required',
             'qty'=> 'required',
             'harga'=> 'required',
         ];
+
+        // data bisa duplicate, dapat manipulasi objek/isi objek
+        $order = Order::find($request->id);
+        $order->name = $request->name;
+        $order->alamat = $request->alamat;
+        $order->jasa_pengiriman = $request->jasa_pengiriman;
+        $order->qty = $request->qty;
+        $order->harga = $request->harga;
+
+        $order->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message'=> 'Data berhasil diubah',
+            'data'=> $order
+        ], 200);
+
     }
 
     /**
@@ -116,6 +133,18 @@ class OrderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $order = Order::find($id);
+        if(empty($order)) {
+            return response()->json([
+                'status' => 'error',
+                'message'=> 'Gagal menghapus data dengan id tersebut'
+            ], 400);
+        }
+        $order->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message'=> 'Data berhasil dihapus'
+        ], 202);
     }
 }

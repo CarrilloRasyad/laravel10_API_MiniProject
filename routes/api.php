@@ -84,3 +84,5 @@ Route::delete('sekolah/{id}', [SekolahController::class, 'destroy']);
 Route::get('order', [OrderController::class,'index']);
 Route::post('order', [OrderController::class,'store']);
 Route::get('order/{id}', [OrderController::class,'show']);
+Route::put('order/{id}', [OrderController::class,'update']);
+Route::delete('order/{id}', [OrderController::class,'destroy']);
