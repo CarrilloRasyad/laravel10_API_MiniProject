@@ -39,9 +39,9 @@ class OlahragaController extends Controller
         if($validator->fails()) {
             return response()->json([
                 'status' => 'Failed',
-                'message' => 'Data tidak ditemukan',
+                'message' => 'Gagal menambahkan data',
                 'data' => $validator->errors()
-            ], 404);
+            ], 400);
         }
 
         $olahraga = new Olahraga();

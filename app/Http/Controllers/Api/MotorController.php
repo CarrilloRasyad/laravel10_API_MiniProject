@@ -40,9 +40,9 @@ class MotorController extends Controller
         if($validator->fails()) {
             return response()->json([
                 'status' => 'Failed',
-                'message' => 'Data tidak ditemukan',
+                'message' => 'Data gagal di tambahkan',
                 'data' => $validator->errors()
-            ], 404);
+            ], 400);
         }
 
         $motor = new Motor();

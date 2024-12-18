@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\BukuController;
 use App\Http\Controllers\Api\MobilController;
 use App\Http\Controllers\Api\MotorController;
 use App\Http\Controllers\Api\OlahragaController;
+use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SekolahController;
 use App\Http\Controllers\Api\TestAPI;
@@ -78,3 +79,8 @@ Route::post('sekolah', [SekolahController::class, 'store']);
 Route::get('sekolah/{id}', [SekolahController::class, 'show']);
 Route::put('sekolah/{id}', [SekolahController::class, 'update']);
 Route::delete('sekolah/{id}', [SekolahController::class, 'destroy']);
+
+//api order
+Route::get('order', [OrderController::class,'index']);
+Route::post('order', [OrderController::class,'store']);
+Route::get('order/{id}', [OrderController::class,'show']);

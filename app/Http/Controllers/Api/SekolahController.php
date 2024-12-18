@@ -51,7 +51,7 @@ class SekolahController extends Controller
                 'status' => 'failed',
                 'message' => 'Data tidak dapat ditambahkan',
                 'data' => $validator->errors()
-            ], 406);
+            ], 400);
         }
 
         $sekolah = new Sekolah();

@@ -42,7 +42,7 @@ class BukuController extends Controller
                 'status' => 'Gagal',
                 'message' => 'Gagal Menambahkan Data',
                 'data' => $validator->errors()
-            ], 404);
+            ], 400);
         }
         $dataBuku = new Buku();
         $dataBuku->judul = $request->judul;

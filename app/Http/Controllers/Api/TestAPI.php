@@ -42,7 +42,7 @@ class TestAPI extends Controller
                 'message' => 'Gagal menambahkan data makanan',
                 'data' => $validator->errors()
 
-            ], 404);
+            ], 400);
         }
         // membuat data baru
         $dataMakanan = new Makanan();

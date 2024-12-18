@@ -42,7 +42,7 @@ class ProductController extends Controller
                 'status' => false,
                 'message' => 'Gagal Menambahkan data',
                 'data' => $validator->fails()
-            ], 404);
+            ], 400);
         }
 
         $product = new Product;

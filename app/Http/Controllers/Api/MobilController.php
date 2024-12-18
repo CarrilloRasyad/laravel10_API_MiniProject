@@ -47,7 +47,7 @@ class MobilController extends Controller
                 'status' => 'Failed',
                 'message' => 'Gagal menambahkan data',
                 'data' => $validator->errors()
-            ], 404);
+            ], 400);
         }
 
         $dataMobil = new Mobil;
