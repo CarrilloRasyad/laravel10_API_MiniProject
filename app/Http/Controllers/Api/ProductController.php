@@ -27,13 +27,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validate = [
-            'nama' => 'required|string',
-            'merk' => 'required|string',
-            'jasa_pengiriman' => 'required|string',
-            'berat' => 'required|integer',
-            'alamat' => 'required|string',
-            'qty' => 'required|integer',
-            'harga' => 'required|integer'
+            'nama' => 'required',
+            'merk' => 'required',
+            'jasa_pengiriman' => 'required',
+            'berat' => 'required',
+            'alamat' => 'required',
+            'qty' => 'required',
+            'harga' => 'required'
         ];
         
         $validator = Validator::make($request->all(), $validate );
@@ -59,7 +59,7 @@ class ProductController extends Controller
         return response()->json([
             'status' => 'Success',
             'message' => 'Berhasil menambahkan data',
-            'data' => $product 
+            'data' => $product
         ], 201);
     }
 
@@ -155,7 +155,6 @@ class ProductController extends Controller
         }
 
         $product->delete();
-
 
         return response()->json([
             'status' => 'Success',
