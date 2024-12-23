@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\MobilController;
 use App\Http\Controllers\Api\MotorController;
 use App\Http\Controllers\Api\OlahragaController;
 use App\Http\Controllers\api\OrderController;
+use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SekolahController;
 use App\Http\Controllers\Api\TestAPI;
@@ -86,3 +87,9 @@ Route::post('order', [OrderController::class,'store']);
 Route::get('order/{id}', [OrderController::class,'show']);
 Route::put('order/{id}', [OrderController::class,'update']);
 Route::delete('order/{id}', [OrderController::class,'destroy']);
+
+Route::get('orders', [OrdersController::class,'index']);
+Route::post('orders', [OrdersController::class,'store']);
+Route::get('orders/{id}', [OrdersController::class,'show']);
+Route::put('orders/{id}', [OrdersController::class,'update']);
+Route::delete('orders/{id}', [OrdersController::class,'destroy']);
