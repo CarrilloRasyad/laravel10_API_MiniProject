@@ -120,7 +120,7 @@ class OrdersController extends Controller
         try {
             DB::beginTransaction();
             $order = Orders::findOrFail($id);
-            $order->update($request->validated());
+            $order->update($request->all());
 
             DB::commit();
 

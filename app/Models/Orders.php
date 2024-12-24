@@ -21,6 +21,6 @@ class Orders extends Model
     
     protected $casts = [
         'qty' => 'integer',
-        'harga'=> 'decimal:2',
+        // 'harga'=> 'decimal:2',
      ];
 }
