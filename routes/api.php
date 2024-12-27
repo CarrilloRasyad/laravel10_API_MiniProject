@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\OlahragaController;
 use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\Api\OrdersController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProductsController;
 use App\Http\Controllers\Api\SekolahController;
 use App\Http\Controllers\Api\TestAPI;
 use Illuminate\Http\Request;
@@ -88,8 +89,17 @@ Route::get('order/{id}', [OrderController::class,'show']);
 Route::put('order/{id}', [OrderController::class,'update']);
 Route::delete('order/{id}', [OrderController::class,'destroy']);
 
+// api orders best practice
 Route::get('orders', [OrdersController::class,'index']);
 Route::post('orders', [OrdersController::class,'store']);
 Route::get('orders/{id}', [OrdersController::class,'show']);
 Route::put('orders/{id}', [OrdersController::class,'update']);
 Route::delete('orders/{id}', [OrdersController::class,'destroy']);
+
+
+// api products best practice
+Route::get('products', [ProductsController::class,'index']);
+Route::post('products', [ProductsController::class,'store']);
+Route::get('products/{id}', [ProductsController::class,'show']);
+Route::put('products/{id}', [ProductsController::class,'update']);
+Route::delete('products/{id}', [ProductsController::class,'destroy']);
