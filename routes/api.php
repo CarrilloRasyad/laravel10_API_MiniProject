@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BukuController;
 use App\Http\Controllers\Api\MobilController;
 use App\Http\Controllers\Api\MotorController;
+use App\Http\Controllers\Api\MotorsController;
 use App\Http\Controllers\Api\OlahragaController;
 use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\Api\OrdersController;
@@ -103,3 +104,10 @@ Route::post('products', [ProductsController::class,'store']);
 Route::get('products/{id}', [ProductsController::class,'show']);
 Route::put('products/{id}', [ProductsController::class,'update']);
 Route::delete('products/{id}', [ProductsController::class,'destroy']);
+
+// api motors best practice
+Route::get('motors', [MotorsController::class, 'index']);
+Route::post('motors', [MotorsController::class, 'store']);
+Route::get('motors/{id}', [MotorsController::class, 'show']);
+Route::put('motors/{id}', [MotorsController::class, 'update']);
+Route::delete('motors/{id}', [MotorsController::class, 'destroy']);
