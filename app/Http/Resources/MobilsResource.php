@@ -20,7 +20,9 @@ class MobilsResource extends JsonResource
             'nama_mobil' => $this->nama_mobil,
             'merk' => $this->merk,
             'nopol' => $this->nopol,
-            'harga' => $this->harga
+            'harga' => $this->harga,
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];
     }
 }
