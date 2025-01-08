@@ -7,5 +7,4 @@ enum Merk: string {
     case Mazda = 'Mazda';
     case Honda = 'Honda';
     case MiniCooper = 'Mini Cooper';
-    case Ferrari = 'Ferrari';
 }

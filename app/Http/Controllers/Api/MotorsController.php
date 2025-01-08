@@ -118,7 +118,7 @@ class MotorsController extends Controller
             ], 200);
         }catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return $this->errorResponse('Data motor not found', 404);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Error deleting motors' . $e->getMessage());
             return $this->errorResponse('Failed load data motors',  500);

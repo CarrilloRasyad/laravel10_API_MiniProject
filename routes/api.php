@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BukuController;
 use App\Http\Controllers\Api\MobilController;
+use App\Http\Controllers\Api\MobilsController;
 use App\Http\Controllers\Api\MotorController;
 use App\Http\Controllers\Api\MotorsController;
 use App\Http\Controllers\Api\OlahragaController;
@@ -111,3 +112,11 @@ Route::post('motors', [MotorsController::class, 'store']);
 Route::get('motors/{id}', [MotorsController::class, 'show']);
 Route::put('motors/{id}', [MotorsController::class, 'update']);
 Route::delete('motors/{id}', [MotorsController::class, 'destroy']);
+
+
+// api mobils best practice
+Route::get('mobils', [MobilsController::class, 'index']);
+Route::post('mobils', [MobilsController::class, 'store']);
+Route::get('mobils/{id}', [MobilsController::class, 'show']);
+Route::put('mobils/{id}', [MobilsController::class, 'update']);
+Route::delete('mobils/{id}', [MobilsController::class, 'destroy']);
