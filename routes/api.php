@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BukuController;
+use App\Http\Controllers\Api\BukusController;
 use App\Http\Controllers\Api\MobilController;
 use App\Http\Controllers\Api\MobilsController;
 use App\Http\Controllers\Api\MotorController;
@@ -120,3 +121,10 @@ Route::post('mobils', [MobilsController::class, 'store']);
 Route::get('mobils/{id}', [MobilsController::class, 'show']);
 Route::put('mobils/{id}', [MobilsController::class, 'update']);
 Route::delete('mobils/{id}', [MobilsController::class, 'destroy']);
+
+// api bukus best practice
+Route::get('bukus', [BukusController::class, 'index']);
+Route::get('bukus/{id}', [BukusController::class, 'show']);
+Route::post('bukus', [BukusController::class, 'store']);
+Route::put('bukus/{id}', [BukusController::class, 'update']);
+Route::delete('bukus/{id}', [BukusController::class, 'destroy']);
