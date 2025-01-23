@@ -56,7 +56,7 @@ class BukusController extends Controller
             return response()->json([
                 'status' => 'Success',
                 'message' => 'Data Buku have been created',
-                'data' => BukuResource::collection($buku)
+                'data' => new BukuResource($buku)
             ], 201);
 
         } 
