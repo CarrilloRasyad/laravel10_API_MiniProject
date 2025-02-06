@@ -107,7 +107,7 @@ class ProductsController extends Controller
         } catch(\Exception $e) {
             DB::rollBack();
             Log::error('Error updating products: '. $e->getMessage());
-            return $this->errorResponse('Failed Update Data', 400);
+            return $this->errorResponse('Failed Update Data', 500);
         }
     }
 
@@ -132,7 +132,7 @@ class ProductsController extends Controller
         } catch(\Exception $e) {
             DB::rollBack();
             Log::error('Error deleting product: ' . $e->getMessage());
-            return $this->errorResponse('Failed delete product', 400);
+            return $this->errorResponse('Failed delete product', 500);
         }
     }
 
@@ -151,7 +151,7 @@ class ProductsController extends Controller
         } catch(\Exception $e) {
             DB::rollBack();
             Log::error('Error deleting all products: ' . $e->getMessage());
-            return $this->errorResponse('Failed to delete all products', 400);
+            return $this->errorResponse('Failed to delete all products', 500);
         }
     }
     public function errorResponse($message, $code) {
