@@ -49,7 +49,7 @@ class ProductsController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message'=> 'Product have been added successfully',
+                'message'=> 'Product has been added successfully',
                 'data' => new ProductsResource($products)
             ], 201);
 
