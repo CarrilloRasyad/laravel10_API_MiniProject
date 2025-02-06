@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
 class UpdateOrderRequest extends StoreOrderRequest 
@@ -20,11 +22,11 @@ class UpdateOrderRequest extends StoreOrderRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'alamat'=> ['required'],
+            'name' => ['required', 'string'],
+            'alamat'=> ['required', 'string'],
             'jasa_pengiriman'=> ['required', 'string', Rule::in(['jne', 'jnt', 'sicepat'])],
-            'qty'=> ['required'],
-            'harga'=> ['required'],
+            'qty'=> ['required', 'integer'],
+            'harga'=> ['required', 'numeric'],
         ];
     }
 
@@ -37,5 +39,14 @@ class UpdateOrderRequest extends StoreOrderRequest
             'qty.required'=> 'Quantity wajib di isi',
             'harga.required'=> 'Harga wajib di isi',
         ];
+    }
+
+    public function failedValidation(Validator $v) 
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => 'Error',
+            'message' => 'Failed update order',
+            'errors' => $v->errors()
+        ], 400));
     }
 }

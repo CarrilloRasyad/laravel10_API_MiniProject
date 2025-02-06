@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
 class StoreOrderRequest extends FormRequest
@@ -23,19 +25,12 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            '*.name' => ['required'],
-            '*.alamat'=> ['required'],
+            '*.name' => ['required', 'string'],
+            '*.alamat'=> ['required', 'string'],
             '*.jasa_pengiriman'=> ['required', 'string', Rule::in(['jne', 'jnt', 'sicepat'])],
             '*.qty'=> ['required', 'integer'],
             '*.harga'=> ['required', 'numeric'],
         ];
-        // return [
-        //     'name' => ['required'],
-        //     'alamat'=> ['required'],
-        //     'jasa_pengiriman'=> ['required', 'string', Rule::in(['jne', 'jnt', 'sicepat'])],
-        //     'qty'=> ['required'],
-        //     'harga'=> ['required'],
-        // ];
     }
 
     public function messages(): array {
@@ -47,5 +42,14 @@ class StoreOrderRequest extends FormRequest
             'qty.required'=> 'Quantity wajib di isi',
             'harga.required'=> 'Harga wajib di isi',
         ];
+    }
+
+    public function failedValidation(Validator $v) 
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => 'Error',
+            'message' => 'Failed to add order',
+            'errors' => $v->errors()
+        ], 400));
     }
 }

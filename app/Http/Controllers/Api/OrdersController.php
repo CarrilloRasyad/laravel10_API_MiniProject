@@ -32,18 +32,23 @@ class OrdersController extends Controller
                 'last_page' => $orders->lastPage()
             ]
 
-        ], 200);
+        ], $orders->count() ? 200 : 404);
 
         } catch(\Exception $e) {
             Log::error('Error retrieving orders: ' . $e->getMessage());
             return $this->errorResponse('Failed load data', 500);
         }
     }
+    
+    /**
+     * Store a newly created resource in storage.
+     */
 
     public function store(StoreOrderRequest $request)
     {
         try {
             DB::beginTransaction();
+
 
             $orders = collect($request->validated())->map(function ($data) {
                 return Orders::create($data);
@@ -66,30 +71,6 @@ class OrdersController extends Controller
             ], 500);
         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(StoreOrderRequest $request)
-    // {
-    //     try {
-    //         DB::beginTransaction();
-    //         $order = Orders::create($request->validated());
-
-    //         DB::commit();
-
-    //         return response()->json([
-    //             'status' => 'success',
-    //             'message' => 'Order has added successfully',
-    //             'data'=> new OrderResource($order),
-    //         ], 201);
-
-    //     } catch(\Exception $e) {
-    //         DB::rollBack();
-    //         Log::error('Error creating order: ' . $e->getMessage());
-    //         return $this->errorResponse('Failed added order', 500);
-    //     }
-    // }
 
     /**
      * Display the specified resource.
@@ -121,7 +102,9 @@ class OrdersController extends Controller
         try {
             DB::beginTransaction();
             $order = Orders::findOrFail($id);
-            $order->update($request->all());
+
+            $validatedData = $request->validated();
+            $order->update($validatedData);
 
             DB::commit();
 
@@ -163,6 +146,26 @@ class OrdersController extends Controller
             DB::rollBack();
             Log::error('Error deleting order: ' . $e->getMessage());
             return $this->errorResponse('Deleted order has been Failed', 500);
+        }
+    }
+
+    public function destroyAll() 
+    {
+        try{
+            DB::beginTransaction();
+            Orders::truncate();
+
+            DB::commit();
+
+            return response()->json([
+                'status' => 'Success',
+                'message' => 'All data orders successfully deleted',
+            ], 200);
+
+        } catch(\Exception $e) {
+            DB::rollBack();
+            Log::error('Error deleting all orders' . $e->getMessage());
+            $this->errorResponse('Failed to load data order', 500);
         }
     }
 
