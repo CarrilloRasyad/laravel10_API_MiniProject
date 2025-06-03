@@ -45,9 +45,9 @@ class BukuController extends Controller
             ], 400);
         }
         $dataBuku = new Buku();
-        $dataBuku->judul = $request->judul;
-        $dataBuku->pengarang = $request->pengarang;
-        $dataBuku->tanggal_publikasi = $request->tanggal_publikasi;
+        $dataBuku->judul = $request->input('judul');
+        $dataBuku->pengarang = $request->input('pengarang');
+        $dataBuku->tanggal_publikasi = $request->input('tanggal_publikasi');
 
         $post = $dataBuku->save();
         
@@ -119,9 +119,9 @@ class BukuController extends Controller
         }
 
         $dataBuku = Buku::find($request->id);
-        $dataBuku->judul = $request->judul;
-        $dataBuku->pengarang = $request->pengarang;
-        $dataBuku->tanggal_publikasi = $request->tanggal_publikasi;
+        $dataBuku->judul = $request->input('judul');
+        $dataBuku->pengarang = $request->input('pengarang');
+        $dataBuku->tanggal_publikasi = $request->input('tanggal_publikasi');
 
         $post = $dataBuku->save();
         

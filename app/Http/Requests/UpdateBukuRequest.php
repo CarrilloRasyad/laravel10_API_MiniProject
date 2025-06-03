@@ -33,8 +33,10 @@ class UpdateBukuRequest extends FormRequest
     {
         return [
             'nama_buku.required' => 'Nama buku wajib di isi',
+            'nama_buku.string' => 'Nama buku harus string',
             'judul.required' => 'Judul buku wajib di isi',
             'pengarang.required' => 'Nama pengarang wajib di isi',
+            'pengarang.string' => 'Nama pengarang harus string',
             'tanggal_publikasi.required' => 'Tanggal publikasi wajib di isi'
         ];
     }
